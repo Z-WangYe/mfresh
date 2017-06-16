@@ -1,0 +1,18 @@
+const http = require("http");
+const express = require("express");
+const mfresh = require('./mefreshIndex');
+const cart = require("./cart");
+const check = require("./check");
+var app  = new express();
+http.createServer(app).listen(5050);
+app.use(express.static('public'));
+app.post('/login',mfresh.login);
+app.post('/register',mfresh.register);
+app.post('/news',mfresh.new_page);
+app.post('/product',mfresh.product_page);
+app.post('/product_detail',mfresh.product_detail);
+app.post('/cart_add',cart.cart_add);
+app.post("/cart_select",cart.cart_select);
+app.post("/cart_delete",cart.cart_delete);
+app.post("/user_check_phone",check.phone_check);
+app.post("/user_check_uname",check.uname_check);
