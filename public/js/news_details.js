@@ -10,7 +10,7 @@ $(function(){
     var nid=str.substr(str.lastIndexOf("=")+1);
     $.ajax({
         type:"post",
-        url:"data/news_detail.php",
+        url:"/news_detail",
         data:{nid:nid},
         success:function(d){
             //console.log(d);
