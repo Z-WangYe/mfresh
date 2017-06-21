@@ -9,6 +9,7 @@ app.use(express.static('public'));
 app.post('/login',mfresh.login);
 app.post('/register',mfresh.register);
 app.post('/news',mfresh.new_page);
+app.post('/news_detail',mfresh.new_detail);
 app.post('/product',mfresh.product_page);
 app.post('/product_detail',mfresh.product_detail);
 app.post('/cart_add',cart.cart_add);

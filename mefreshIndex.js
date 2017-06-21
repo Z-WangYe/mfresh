@@ -91,6 +91,26 @@ module.exports  = {
             })
         })
     },
+    new_detail:(req,res)=>{
+        req.on("data",(buf)=>{
+            console.log(buf.toString());
+            var nid = qs.parse(buf.toString()).nid;
+            pool.getConnection((err,conn)=>{
+                if(err){
+                    throw err;
+                }else{
+                    conn.query("SELECT * FROM mf_news WHERE nid=?",[nid],(error,result)=>{
+                        if(error){
+                            throw error;
+                        }else{
+                            res.json(result);
+                            conn.release();
+                        }
+                    })
+                }
+            })
+        })
+    },
     product_page:(req,res)=>{
         req.on('data',(buf)=>{
             console.log(buf.toString());
@@ -119,6 +139,7 @@ module.exports  = {
                                 console.log(result);
                                 obj.data = result;
                                 res.json(obj);
+                                conn.release();
                             }
                         })
                     }
@@ -142,6 +163,7 @@ module.exports  = {
                         }else{
                             console.log(result);
                             res.json(result);
+                            conn.release();
                         }
                     })
                 }
