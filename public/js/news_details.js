@@ -12,8 +12,9 @@ $(function(){
         type:"post",
         url:"/news_detail",
         data:{nid:nid},
-        success:function(d){
+        success:function(data){
             //console.log(d);
+            var d = data[0];
             $(".news_details>h2").html(d.title);
             var t=parseInt(d.pubTime);
             $(".news_details>span").append(dateFormat(t));
